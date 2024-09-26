@@ -2,19 +2,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 #define BUFFER_SIZE 1024
 
 /**
- * process_file - Processes Monty bytecode file line by line.
- * @file: The Monty bytecode file to process.
+ * process_file - Processes Monty bytecode file line by line
+ * @file: The Monty bytecode file to process
  *
  * Description: Reads each line from the file, parses the opcode,
  * and executes the corresponding function.
  */
 void process_file(FILE *file)
 {
-	char buffer[BUFFER_SIZE]; /* Local variable */
+	char buffer[BUFFER_SIZE];
 	char *opcode, *arg;
 	unsigned int line_number = 0;
 	stack_t *stack = NULL;
@@ -41,6 +40,10 @@ void process_file(FILE *file)
 		{
 			pall(&stack, line_number);
 		}
+		else if (strcmp(opcode, "pint") == 0)
+		{
+			pint(&stack, line_number);
+		}
 		else
 		{
 			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
@@ -50,11 +53,11 @@ void process_file(FILE *file)
 }
 
 /**
- * main - Entry point of the Monty bytecode interpreter.
- * @argc: The number of arguments.
- * @argv: An array of arguments (expects Monty bytecode file).
+ * main - Entry point of the Monty bytecode interpreter
+ * @argc: The number of arguments
+ * @argv: An array of arguments (expects Monty bytecode file)
  *
- * Return: EXIT_SUCCESS on success, EXIT_FAILURE on error.
+ * Return: EXIT_SUCCESS on success, EXIT_FAILURE on error
  */
 int main(int argc, char *argv[])
 {
@@ -77,3 +80,4 @@ int main(int argc, char *argv[])
 	fclose(file);
 	return (EXIT_SUCCESS);
 }
+

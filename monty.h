@@ -42,5 +42,6 @@ void pall(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *stack);
 void error_exit(int status);
 void add_to_stack(stack_t **stack, int n);
+void pint(stack_t **stack, unsigned int line_number);
 
 #endif /* MONTY_H */
