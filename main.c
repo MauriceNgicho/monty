@@ -56,6 +56,10 @@ void process_file(FILE *file)
 		{
 			add(&stack, line_number);
 		}
+		else if (strcmp(opcode, "nop") == 0)
+		{
+			nop(&stack, line_number);
+		}
 		else
 		{
 			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
