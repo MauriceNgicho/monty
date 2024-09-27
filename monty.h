@@ -37,7 +37,7 @@ typedef struct instruction_s
 
 /* Function prototypes */
 int is_number(const char *str);
-void push(stack_t **stack, unsigned int line_number, int n);
+void push(stack_t **stack, unsigned int line_number, char *arg);
 void pall(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *stack);
 void error_exit(int status);

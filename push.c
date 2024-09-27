@@ -1,17 +1,25 @@
 #include "monty.h"
+#include <ctype.h>
 
 /**
- * push - Pushes an integer onto the stack
- * @stack: Double pointer to the top of the stack
- * @line_number: The current line number in the bytecode file
- * @n: The integer to be pushed onto the stack
+ * push - Pushes an integer onto the stack.
+ * @stack: Double pointer to the stack.
+ * @line_number: The line number where the instruction appears.
+ * @arg: The argument to push onto the stack.
  *
- * Description: This function takes an integer and pushes
- * it onto the stack. If any error occurs, it prints an error message
- * and exits with a failure status.
+ * Description: If the argument is not a valid integer, print an error
+ * and exit with the status EXIT_FAILURE.
  */
-void push(stack_t **stack, unsigned int line_number, int n)
+void push(stack_t **stack, unsigned int line_number, char *arg)
 {
-	(void)line_number;  /* Avoid unused variable warning for now */
-	add_to_stack(stack, n);  /* Function assumed to be implemented elsewhere */
+    int n;
+
+    if (!is_number(arg))
+    {
+        fprintf(stderr, "L%u: usage: push integer\n", line_number);
+        exit(EXIT_FAILURE);
+    }
+
+    n = atoi(arg);
+    add_to_stack(stack, n);
 }

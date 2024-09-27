@@ -1,20 +1,22 @@
 #include "monty.h"
+#include <stdio.h>
 
 /**
- * pall - prints all the values on the stack.
- * @stack: double pointer to the top of the stack
- * @line_number: current line number in the Monty bytecode file (unused)
+ * pall - Prints all the values on the stack, starting from the top.
+ * @stack: Double pointer to the stack.
+ * @line_number: The line number (unused).
+ *
+ * Description: If the stack is empty, it doesn't print anything.
  */
 void pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *current = *stack;
+    stack_t *current = *stack;
 
-	(void)line_number; /* Line number not needed for this function */
+    (void)line_number; /* Suppress unused variable warning */
 
-	/* Traverse the stack and print each value */
-	while (current)
-	{
-		printf("%d\n", current->n);
-		current = current->next;
-	}
+    while (current != NULL)
+    {
+        printf("%d\n", current->n);
+        current = current->next;
+    }
 }

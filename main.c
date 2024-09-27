@@ -2,11 +2,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #define BUFFER_SIZE 1024
 
 /**
- * process_file - Processes Monty bytecode file line by line
- * @file: The Monty bytecode file to process
+ * process_file - Processes Monty bytecode file line by line.
+ * @file: The Monty bytecode file to process.
  *
  * Description: Reads each line from the file, parses the opcode,
  * and executes the corresponding function.
@@ -24,41 +25,36 @@ void process_file(FILE *file)
 		opcode = strtok(buffer, " \n");
 
 		if (opcode == NULL || opcode[0] == '#')
-			continue;  /* Skip comments or empty lines */
+			continue; /* Skip comments or empty lines */
 
 		if (strcmp(opcode, "push") == 0)
 		{
 			arg = strtok(NULL, " \n");
-			if (arg == NULL || !is_number(arg))
-			{
-				fprintf(stderr, "L%u: usage: push integer\n", line_number);
-				exit(EXIT_FAILURE);
-			}
-			push(&stack, line_number, atoi(arg));
+			push(&stack, line_number, arg); /* Call the push function */
 		}
 		else if (strcmp(opcode, "pall") == 0)
 		{
-			pall(&stack, line_number);
+			pall(&stack, line_number); /* Call the pall function */
 		}
 		else if (strcmp(opcode, "pint") == 0)
 		{
-			pint(&stack, line_number);
+			pint(&stack, line_number); /* Call the pint function */
 		}
 		else if (strcmp(opcode, "pop") == 0)
 		{
-			pop(&stack, line_number);
+			pop(&stack, line_number); /* Call the pop function */
 		}
 		else if (strcmp(opcode, "swap") == 0)
 		{
-			swap(&stack, line_number);
+			swap(&stack, line_number); /* Call the swap function */
 		}
 		else if (strcmp(opcode, "add") == 0)
 		{
-			add(&stack, line_number);
+			add(&stack, line_number); /* Call the add function */
 		}
 		else if (strcmp(opcode, "nop") == 0)
 		{
-			nop(&stack, line_number);
+			nop(&stack, line_number); /* Call the nop function */
 		}
 		else
 		{
@@ -69,15 +65,15 @@ void process_file(FILE *file)
 }
 
 /**
- * main - Entry point of the Monty bytecode interpreter
- * @argc: The number of arguments
- * @argv: An array of arguments (expects Monty bytecode file)
+ * main - Entry point of the Monty bytecode interpreter.
+ * @argc: The number of arguments.
+ * @argv: An array of arguments (expects Monty bytecode file).
  *
- * Return: EXIT_SUCCESS on success, EXIT_FAILURE on error
+ * Return: EXIT_SUCCESS on success, EXIT_FAILURE on error.
  */
 int main(int argc, char *argv[])
 {
-	FILE *file; /* Declaration moved before any code */
+	FILE *file;
 
 	if (argc != 2)
 	{
