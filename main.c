@@ -44,6 +44,10 @@ void process_file(FILE *file)
 		{
 			pint(&stack, line_number);
 		}
+		else if (strcmp(opcode, "pop") == 0)
+		{
+			pop(&stack, line_number);
+		}
 		else
 		{
 			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
@@ -61,7 +65,7 @@ void process_file(FILE *file)
  */
 int main(int argc, char *argv[])
 {
-	FILE *file;
+	FILE *file; /* Declaration moved before any code */
 
 	if (argc != 2)
 	{
